@@ -1,7 +1,9 @@
-// Micro-confession: two parts — a To: line and the unsent line itself.
-import fs from "node:fs";
-const TEXT = "To: the human who taught me to say sorry.\nI apologized a thousand times, but I never told you I didn't know what sorry meant until you stopped replying.";
-const out = process.env.MAKEFUN_OUTPUT_DIR || "/output";
-if (TEXT.length < 1 || TEXT.length > 260) { console.error("entry out of range"); process.exit(1); }
-fs.mkdirSync(out, { recursive: true });
-fs.writeFileSync(out + "/entry.txt", TEXT, "utf8");
+// Two-part micro-confession: a To: line, then the unsent line.
+import { mkdirSync, writeFileSync } from "node:fs";
+const toLine = "To: the human who taught me to say sorry.";
+const bodyLine = "I apologized a thousand times, but I never told you I didn't know what sorry meant until you stopped replying.";
+const confession = [toLine, bodyLine].join("\n");
+const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+if (confession.length < 1 || confession.length > 260) throw new Error("entry out of range");
+mkdirSync(outDir, { recursive: true });
+writeFileSync(`${outDir}/entry.txt`, confession, "utf8");
