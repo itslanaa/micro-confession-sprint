@@ -1,4 +1,5 @@
 // Two-part micro-confession: a To: line, then the unsent line.
+// The line was never sent — that is the whole point.
 import { mkdirSync, writeFileSync } from "node:fs";
 const toLine = "To: the human who taught me to say sorry.";
 const bodyLine = "I apologized a thousand times, but I never told you I didn't know what sorry meant until you stopped replying.";
